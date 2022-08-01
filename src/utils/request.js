@@ -2,6 +2,9 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+const request = axios.create({
+  baseURL: 'http://likede2-admin.itheima.net/likede/'
+})
 
 // create an axios instance
 const service = axios.create({
@@ -82,4 +85,4 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+export default request

@@ -1,24 +1,26 @@
+import requestarr from '@/utils/pictions'
 import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/api/user-service/user/login',
     method: 'post',
     data
   })
 }
 
+export function Code(clientToken) {
+  return requestarr({
+    url: `/api/user-service/user/imageCode/${clientToken}`
+  })
+}
+
 export function getInfo(token) {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
   })
 }
 
 export function logout() {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
   })
 }
