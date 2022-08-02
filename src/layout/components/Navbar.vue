@@ -1,16 +1,20 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
+    <!-- <hamburger  class="hamburger-container" @toggleClick="toggleSideBar" /> -->
     <!-- <breadcrumb class="breadcrumb-container" /> -->
+    <div class="logo-style">
+      <img src="~@/assets/logo.png" alt="" >
+    </div>
 
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
-      <div>
+    <div>
+      <el-avatar class="touxian" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+      <span class="uname">欢迎您,{{ $store.state.user.userInfo.userName}}</span>
       <el-tooltip class="item" effect="dark" content="退出登录" placement="bottom">
         <el-button>退出</el-button>
       </el-tooltip>
-      </div>
+    </div>
       </el-dropdown>
     </div>
   </div>
@@ -56,6 +60,14 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 
+  .logo-style img {
+  width: 88px;
+  height: 36px;
+  position: relative;
+  top: 10px;
+  left: 14px;
+  }
+
   .hamburger-container {
     line-height: 46px;
     height: 100%;
@@ -74,13 +86,39 @@ export default {
   }
 
   .right-menu {
-    float: right;
+    // float: right;
     height: 100%;
-    line-height: 50px;
+    // line-height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -30px;
+    right: -600px;
+    .touxian {
+    position: absolute;
+    top: -30px;
+    left: -140px;
+    }
+    .uname {
+    position: absolute;
+    top: -16px;
+    left: -90px;
+    color: #fff;
+    }
+    .item {
+    position: absolute;
+    top: -30px;
+    right: -110px;
+    background-color: #6480e3;
+    // opacity: 0;
+    // filter: none;
+    }
+
+
   .el-button {
   border: 0 solid;
-  opacity: 0.5;
-  filter: none;
+    color: #fff;
   }
 
     &:focus {
@@ -123,7 +161,7 @@ export default {
           cursor: pointer;
           position: absolute;
           right: -20px;
-          top: 25px;
+          // top: 25px;
           font-size: 12px;
         }
       }
