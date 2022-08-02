@@ -61,6 +61,7 @@
         class="test"
         style="margin: 10px 8px 0px"
         @click="onLogin"
+        :loading = 'isloading'
         >登录</el-button>
       </div>
     </div>
@@ -93,7 +94,8 @@ export default {
       code: [ {required: true, min: 4, max: 4, message: '验证码格式不正确', trigger: 'blur'}]
       },
       token: localStorage.getItem('DILIKE'),
-      userInfo: {}
+      userInfo: {},
+      isloading: false
     }
   },
 
@@ -104,21 +106,24 @@ export default {
   methods: {
   async onLogin () {
     try {
+      this.isloading = true
+      await this.$refs.loginForm.validate()
       const { data } = await login(this.loginForm)
       // console.log(data.msg)
       this.userInfo = data
-      this.token = data.token
-      window.localStorage.setItem('DILIKE', this.token)
+      await this.$store.dispatch('user/getToken', this.loginForm)
       this.$store.dispatch('user/getCode', this.token)
       this.$store.dispatch('user/getUserInfo', this.userInfo)
-      if (this.token) {
+      if (data.success) {
       this.$router.push('/')
       return this.$message.success(data.msg)
       } else {
       return this.$message.error(data.msg)
       }
       
-    } catch (error) {}
+    } finally {
+    this.isloading = false
+    }
   },
   async clickCode () {
   await Code(this.loginForm.clientToken)

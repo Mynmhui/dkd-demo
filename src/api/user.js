@@ -1,6 +1,11 @@
 import requestarr from '@/utils/pictions'
 import request from '@/utils/request'
 
+/**
+ * 获取登录信息
+ * @param {*} data 
+ * @returns 
+ */
 export function login(data) {
   return request({
     url: '/api/user-service/user/login',

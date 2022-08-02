@@ -2,30 +2,15 @@
   <div class="navbar">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-    <breadcrumb class="breadcrumb-container" />
+    <!-- <breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
+      <div>
+      <el-tooltip class="item" effect="dark" content="退出登录" placement="bottom">
+        <el-button>退出</el-button>
+      </el-tooltip>
+      </div>
       </el-dropdown>
     </div>
   </div>
@@ -61,11 +46,15 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1996;
+  background-image: url('~@/assets/navbar.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 
   .hamburger-container {
     line-height: 46px;
@@ -88,6 +77,11 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
+  .el-button {
+  border: 0 solid;
+  opacity: 0.5;
+  filter: none;
+  }
 
     &:focus {
       outline: none;
