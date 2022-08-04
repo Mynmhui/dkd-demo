@@ -3,7 +3,11 @@
     <!-- <hamburger  class="hamburger-container" @toggleClick="toggleSideBar" /> -->
     <!-- <breadcrumb class="breadcrumb-container" /> -->
     <div class="logo-style">
-      <img src="~@/assets/logo.png" alt="" >
+      <img 
+      src="~@/assets/logo.png" 
+      alt="" 
+      >
+      <!-- v-imgError="defaultImg" -->
     </div>
 
     <div class="right-menu">
@@ -11,7 +15,13 @@
     <div>
       <el-avatar class="touxian" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
       <span class="uname">欢迎您,{{ $store.state.user.userInfo.userName}}</span>
-      <el-tooltip class="item" effect="dark" content="退出登录" placement="bottom">
+      <el-tooltip 
+      class="item" 
+      effect="dark" 
+      content="退出登录" 
+      placement="bottom"
+      @click.native="logout"
+      >
         <el-button>退出</el-button>
       </el-tooltip>
     </div>
@@ -35,6 +45,14 @@ export default {
       'sidebar',
       'avatar'
     ])
+  },
+  data () {
+  return {
+  // defaultImg
+  }
+  },
+  computed: {
+  ...mapGetters(['sidebar', 'avatar'])
   },
   methods: {
     toggleSideBar() {

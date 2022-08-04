@@ -114,7 +114,7 @@ export default {
       await this.$store.dispatch('user/getToken', this.loginForm)
       this.$store.dispatch('user/getCode', this.token)
       this.$store.dispatch('user/getUserInfo', this.userInfo)
-      if (data.success) {
+      if (data.token) {
       this.$router.push('/')
       return this.$message.success(data.msg)
       } else {
