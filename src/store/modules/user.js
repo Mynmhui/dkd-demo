@@ -18,7 +18,7 @@ export default {
   state.code = payload
   },
   // 获取用户信息
-  setUserInfo(state, payload) {
+  getUserInfo(state, payload) {
   state.userInfo = payload
   }
   },
